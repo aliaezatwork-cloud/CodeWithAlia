@@ -1,0 +1,48 @@
+{
+  "entities": {
+    "Lesson": {
+      "title": "Lesson",
+      "description": "Educational lesson content",
+      "type": "object",
+      "properties": {
+        "title": { "type": "string" },
+        "description": { "type": "string" },
+        "videoType": { "type": "string", "enum": ["youtube", "file"] },
+        "youtubeId": { "type": "string" },
+        "videoUrl": { "type": "string" },
+        "category": { "type": "string", "enum": ["arabic", "english"] },
+        "level": { "type": "string" },
+        "duration": { "type": "string" },
+        "thumbnail": { "type": "string" },
+        "pdfUrl": { "type": "string" },
+        "order": { "type": "integer" },
+        "createdAt": { "type": "string", "format": "date-time" },
+        "updatedAt": { "type": "string", "format": "date-time" }
+      },
+      "required": ["title", "description", "videoType"]
+    },
+    "Student": {
+      "title": "Student",
+      "description": "Registered student record",
+      "type": "object",
+      "properties": {
+        "name": { "type": "string" },
+        "email": { "type": "string", "format": "email" },
+        "phone": { "type": "string" },
+        "joinedAt": { "type": "string", "format": "date-time" },
+        "updatedAt": { "type": "string", "format": "date-time" }
+      },
+      "required": ["name", "email"]
+    }
+  },
+  "firestore": {
+    "/lessons/{lessonId}": {
+      "schema": "Lesson",
+      "description": "Collection of lessons available to students"
+    },
+    "/students/{studentId}": {
+      "schema": "Student",
+      "description": "Collection of registered students"
+    }
+  }
+}
